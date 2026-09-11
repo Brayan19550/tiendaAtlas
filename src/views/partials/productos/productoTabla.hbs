@@ -1,0 +1,39 @@
+{{#if productos}}
+<table class="table table-bordered tabla-verde">
+    <thead>
+        <tr class="text-center">
+            <th>Num.</th>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th>Precio</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each productos}}
+        <tr>
+            <td>{{@index}}</td>
+            <td>{{nombre}}</td>
+            <td>{{descripcion}}</td>
+            <td>{{precio}}</td>
+            <td>
+                {{#if opcion}}
+                <a href="/productos/{{_id}}/status" class="btn btn-no-disponible"><img src="/icons/No disponible.png" style="width: 30px; height: 30px;">No disponible</a>
+                {{else}}
+                <a href="/productos/{{_id}}/status" class="btn btn-disponible"><img src="/icons/Disponible.jpg" style="width: 30px; height: 30px;">Disponible</a>
+                {{/if}}
+                <a href="/productos/{{_id}}/update" class="btn btn-actualizar"><img src="/icons/Actualizar.png" style="width: 30px; height: 30px;">Actualizar</a>
+                <a href="/productos/{{_id}}/delete" class="btn btn-eliminar"><img src="/icons/Eliminar.png" style="width: 30px; height: 30px;">Eliminar</a>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+{{else}}
+<div class="h-100 d-flex align-items-center justify-content-center">
+    <div class="text-center text-white">
+        <h1>No hay productos</h1>
+        <img src="/icons/file.png" class="w-75">
+    </div>
+</div>
+{{/if}}
