@@ -1,7 +1,12 @@
 import Productos from "../models/Productos";
 export const renderProductos=async(req,res)=>{
-    const productos=await Productos.find().lean();
-    res.render("index",{productos: productos});
+    try {
+        const productos=await Productos.find().lean();
+        const proveedores= await Proveedores.find().lean();
+        res.render("index",{ productos, proveedores });
+    } catch (error) {
+        console.log(error);
+    }
 };
 export const createProductos=async(req,res)=>{
     try {
