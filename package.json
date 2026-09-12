@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon src/index.js --exec babel-node",
     "build": "babel src -d Proyecto && ncp src/views Proyecto/views && ncp src/frontend Proyecto/frontend",
-    "start": "nonde Proyecto/index.js"
+    "start": "node Proyecto/index.js"
   },
   "keywords": [],
   "author": "",

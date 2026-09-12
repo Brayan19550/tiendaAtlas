@@ -1,10 +1,21 @@
-<div class="container">
-    <div class="row">
+<div class="container mt-4">
+    <div class="row mb-5">
+        <h2 class="text-white mb-3">Gestión de Productos</h2>
         <div class="col-md-5">
             {{> productos/productoForm}}
         </div>
         <div class="col-md-7">
             {{> productos/productoTabla}}
+        </div>
+    </div>
+    <hr class="border-light my-5">
+    <div class="row">
+        <h2 class="text-white mb-3">Gestión de Proveedores</h2>
+        <div class="col-md-5">
+            {{> proveedores/proveedorForm}}
+        </div>
+        <div class="col-md-7">
+            {{> proveedores/proveedorTabla}}
         </div>
     </div>
 </div>

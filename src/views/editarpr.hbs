@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-5 offset-md-3">
+            <div class="card card-body editar-producto p-4 text-white">
+                <h4>Actualiza proveedor</h4>
+                <form action="/proveedores/{{proveedor._id}}/update" method="post">
+                    <div>
+                        <label for="nombreEmpresa">Modificar empresa:</label>
+                        <input type="text" name="nombreEmpresa" placeholder="Empresa" value="{{proveedor.nombreEmpresa}}" class="form-control">
+                    </div>
+                    <div>
+                        <label for="contactoNombre">Modificar contacto:</label>
+                        <input type="text" name="contactoNombre" placeholder="Contacto" value="{{proveedor.contactoNombre}}" class="form-control">
+                    </div>
+                    <div>
+                        <label for="telefono">Modificar teléfono:</label>
+                        <input type="text" name="telefono" placeholder="Teléfono" value="{{proveedor.telefono}}" class="form-control">
+                    </div>
+                    <div>
+                        <label for="correo">Modificar correo:</label>
+                        <input type="email" name="correo" placeholder="Correo" value="{{proveedor.correo}}" class="form-control">
+                    </div>
+                    <div>
+                        <label for="direccion">Modificar dirección:</label>
+                        <textarea name="direccion" cols="30" rows="3" placeholder="Dirección" class="form-control">
+                            {{proveedor.direccion}}
+                        </textarea>
+                    </div>
+                    <button class="btn btn-warning mt-2"><img src="/icons/Actualizar.png" style="width: 30px; height: 30px;">Actualizar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

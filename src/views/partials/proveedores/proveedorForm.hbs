@@ -1,0 +1,27 @@
+<div class="card card-body p-4 rounded-0 formulario-verde">
+    <h4>Agregar proveedor</h4>
+    <form action="/proveedores/agregar" method="post">
+        <div>
+            <label for="nombreEmpresa">Nombre de la empresa:</label>
+            <input type="text" name="nombreEmpresa" placeholder="Empresa" id="nombreEmpresa" class="form-control campo-verde">
+        </div>
+        <div>
+            <label for="contactoNombre">Nombre del contacto:</label>
+            <input type="text" name="contactoNombre" placeholder="Contacto" id="contactoNombre" class="form-control campo-verde">
+        </div>
+        <div>
+            <label for="telefono">Teléfono:</label>
+            <input type="text" name="telefono" placeholder="Teléfono" id="telefono" class="form-control campo-verde">
+        </div>
+        <div>
+            <label for="correo">Correo electrónico:</label>
+            <input type="email" name="correo" placeholder="Correo" id="correo" class="form-control campo-verde">
+        </div>
+        <div>
+            <label for="direccion">Dirección:</label>
+            <textarea name="direccion" cols="25" rows="3" placeholder="Dirección"
+                class="form-control campo-verde"></textarea>
+        </div>
+        <button class="btn btn-success btn-sm mt-2"><img src="/icons/Agregar.png" style="width: 30px; height: 30px;">Agregar Proveedor</button>
+    </form>
+</div>

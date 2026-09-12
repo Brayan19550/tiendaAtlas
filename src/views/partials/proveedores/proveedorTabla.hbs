@@ -1,0 +1,43 @@
+{{#if proveedores}}
+<table class="table table-bordered tabla-verde">
+    <thead>
+        <tr class="text-center">
+            <th>Num.</th>
+            <th>Empresa</th>
+            <th>Contacto</th>
+            <th>Teléfono</th>
+            <th>Correo</th>
+            <th>Dirección</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each proveedores}}
+        <tr>
+            <td>{{@index}}</td>
+            <td>{{nombreEmpresa}}</td>
+            <td>{{contactoNombre}}</td>
+            <td>{{telefono}}</td>
+            <td>{{correo}}</td>
+            <td>{{direccion}}</td>
+            <td>
+                {{#if opcion}}
+                <a href="/proveedores/{{_id}}/status" class="btn btn-no-disponible"><img src="/icons/No disponible.png" style="width: 30px; height: 30px;">Inactivo</a>
+                {{else}}
+                <a href="/proveedores/{{_id}}/status" class="btn btn-disponible"><img src="/icons/Disponible.jpg" style="width: 30px; height: 30px;">Activo</a>
+                {{/if}}
+                <a href="/proveedores/{{_id}}/update" class="btn btn-actualizar"><img src="/icons/Actualizar.png" style="width: 30px; height: 30px;">Actualizar</a>
+                <a href="/proveedores/{{_id}}/delete" class="btn btn-eliminar"><img src="/icons/Eliminar.png" style="width: 30px; height: 30px;">Eliminar</a>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+{{else}}
+<div class="h-100 d-flex align-items-center justify-content-center">
+    <div class="text-center text-white">
+        <h1>No hay proveedores</h1>
+        <img src="/icons/file.png" class="w-75">
+    </div>
+</div>
+{{/if}}
