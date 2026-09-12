@@ -21,7 +21,7 @@ export const createProveedor=async (req, res) => {
 export const renderEditProveedor=async(req,res) => {
     try {
         const proveedor=await Proveedores.findById(req.params.id).lean();
-        res.render("editarProveedor",{proveedor});
+        res.render("editarpr",{proveedor});
     } catch (error) {
         console.log(error.message);
     }
