@@ -1,4 +1,5 @@
 import Productos from "../models/Productos";
+import Proveedores from "../models/Proveedores";
 export const renderProductos=async(req,res)=>{
     try {
         const productos=await Productos.find().lean();
