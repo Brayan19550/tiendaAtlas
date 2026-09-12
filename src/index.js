@@ -1,5 +1,5 @@
-import app from "./app";
-import './database';
-import { PORT } from "./config";
+import app from "./app.js";
+import './database.js';
+import { PORT } from "./config.js";
 app.listen(PORT);
 console.log('Servidor en puerto',PORT);
