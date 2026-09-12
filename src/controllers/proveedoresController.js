@@ -1,7 +1,12 @@
 import Proveedores from "../models/Proveedores";
 export const renderProveedores=async (req, res) => {
-    const proveedores=await Proveedores.find().lean();
-    res.render("index",{proveedores: proveedores});
+    try {
+        const proveedores=await Proveedores.find().lean();
+        const productos=await Productos.find().lean();
+        res.render("index",{ proveedores,productos }); 
+    } catch (error) {
+        console.log(error);
+    }
 };
 export const createProveedor=async (req, res) => {
     try {
