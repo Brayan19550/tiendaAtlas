@@ -3,7 +3,11 @@ import indexRoutes from './routes/indexRoutes';
 import exphbs  from "express-handlebars";
 import path from "path";
 import morgan from "morgan";
+import handlebars from "handlebars";
 const app=express();
+handlebars.registerHelper("eq",function(a,b) {
+    return a===b;
+});
 app.set("views",path.join(__dirname,"views"));
 app.engine(
     ".hbs",
