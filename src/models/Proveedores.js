@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-const proveedorEsquema = new Schema(
+const proveedorEsquema=new Schema(
   {
     nombreEmpresa: {
       type: String,
@@ -26,6 +26,21 @@ const proveedorEsquema = new Schema(
     direccion: {
       type: String,
       required: true
+    },
+    rfc: {
+      type: String,
+      trim: true,
+      uppercase: true,
+      maxLength: 13
+    },
+    condicionesPago: {
+      type: String,
+      trim: true
+    },
+    calificacion: {
+      type: Number,
+      min: 1,
+      max: 5
     },
     activo: {
       type: Boolean,

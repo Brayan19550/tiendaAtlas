@@ -6,27 +6,63 @@
                 <form action="/proveedores/{{proveedor._id}}/update" method="post">
                     <div>
                         <label for="nombreEmpresa">Modificar empresa:</label>
-                        <input type="text" name="nombreEmpresa" placeholder="Empresa" value="{{proveedor.nombreEmpresa}}" class="form-control">
+                        <input type="text" name="nombreEmpresa" placeholder="Empresa"
+                            value="{{proveedor.nombreEmpresa}}" class="form-control">
                     </div>
                     <div>
                         <label for="contactoNombre">Modificar contacto:</label>
-                        <input type="text" name="contactoNombre" placeholder="Contacto" value="{{proveedor.contactoNombre}}" class="form-control">
+                        <input type="text" name="contactoNombre" placeholder="Contacto"
+                            value="{{proveedor.contactoNombre}}" class="form-control">
                     </div>
                     <div>
                         <label for="telefono">Modificar teléfono:</label>
-                        <input type="text" name="telefono" placeholder="Teléfono" value="{{proveedor.telefono}}" class="form-control">
+                        <input type="text" name="telefono" placeholder="Teléfono" value="{{proveedor.telefono}}"
+                            class="form-control">
                     </div>
                     <div>
                         <label for="correo">Modificar correo:</label>
-                        <input type="email" name="correo" placeholder="Correo" value="{{proveedor.correo}}" class="form-control">
+                        <input type="email" name="correo" placeholder="Correo" value="{{proveedor.correo}}"
+                            class="form-control">
                     </div>
                     <div>
                         <label for="direccion">Modificar dirección:</label>
-                        <textarea name="direccion" cols="30" rows="3" placeholder="Dirección" class="form-control">
-                            {{proveedor.direccion}}
-                        </textarea>
+                        <textarea name="direccion" cols="30" rows="3" placeholder="Dirección"
+                            class="form-control">{{proveedor.direccion}}</textarea>
                     </div>
-                    <button class="btn btn-warning mt-2"><img src="/icons/Actualizar.png" style="width: 30px; height: 30px;">Actualizar</button>
+                    <div>
+                        <label for="rfc">Modificar RFC:</label>
+                        <input type="text" name="rfc" placeholder="RFC" value="{{proveedor.rfc}}" class="form-control"
+                            maxlength="13" style="text-transform: uppercase;">
+                    </div>
+                    <div>
+                        <label for="condicionesPago">Modificar condiciones de pago:</label>
+                        <select name="condicionesPago" id="condicionesPago" class="form-control">
+                            <option value="" disabled>Selecciona una opción</option>
+                            <option value="Contado" {{#if (eq proveedor.condicionesPago "Contado" )}}selected{{/if}}>
+                                Contado</option>
+                            <option value="Crédito 30 días" {{#if (eq proveedor.condicionesPago "Crédito 30 días"
+                                )}}selected{{/if}}>Crédito 30 días</option>
+                            <option value="Crédito 60 días" {{#if (eq proveedor.condicionesPago "Crédito 60 días"
+                                )}}selected{{/if}}>Crédito 60 días</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="calificacion">Modificar calificación:</label>
+                        <select name="calificacion" id="calificacion" class="form-control">
+                            <option value="" disabled>Selecciona una calificación</option>
+                            <option value="5" {{#if (eq proveedor.calificacion 5)}}selected{{/if}}>⭐⭐⭐⭐⭐ (5 - Excelente)
+                            </option>
+                            <option value="4" {{#if (eq proveedor.calificacion 4)}}selected{{/if}}>⭐⭐⭐⭐ (4 - Muy bueno)
+                            </option>
+                            <option value="3" {{#if (eq proveedor.calificacion 3)}}selected{{/if}}>⭐⭐⭐ (3 - Bueno)
+                            </option>
+                            <option value="2" {{#if (eq proveedor.calificacion 2)}}selected{{/if}}>⭐⭐ (2 - Regular)
+                            </option>
+                            <option value="1" {{#if (eq proveedor.calificacion 1)}}selected{{/if}}>⭐ (1 - Malo)</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-warning mt-2"><img src="/icons/Actualizar.png"
+                            style="width: 30px; height: 30px;">Actualizar</button>
                 </form>
             </div>
         </div>
