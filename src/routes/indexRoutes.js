@@ -3,20 +3,19 @@ import Productos from '../models/Productos';
 import { createProductos, deleteProductos, renderEditProducto, renderProductos, statusProductos, updateProductos } from "../controllers/productoController";
 import Proveedores from '../models/Proveedores';
 import { createProveedor, deleteProveedor, renderEditProveedor, renderProveedores, statusProveedor, updateProveedor } from "../controllers/proveedoresController";
-
 const router=Router();
 router.get("/", (req, res) => {
     res.render("index");
 });
-router.get('/',renderProductos);
+router.get("/productos",renderProductos);
 router.post("/productos/agregar",createProductos);
-router.get('/productos/:id/update',renderEditProducto);
+router.get("/productos/:id/update",renderEditProducto);
 router.post("/productos/:id/update",updateProductos);
 router.get("/productos/:id/delete",deleteProductos);
 router.get("/productos/:id/status",statusProductos);
-router.get('/proveedores',renderProveedores);
+router.get("/proveedores",renderProveedores);
 router.post("/proveedores/agregar",createProveedor);
-router.get('/proveedores/:id/update',renderEditProveedor);
+router.get("/proveedores/:id/update",renderEditProveedor);
 router.post("/proveedores/:id/update",updateProveedor);
 router.get("/proveedores/:id/delete",deleteProveedor);
 router.get("/proveedores/:id/status",statusProveedor);
