@@ -4,6 +4,7 @@ import exphbs  from "express-handlebars";
 import path from "path";
 import morgan from "morgan";
 import handlebars from "handlebars";
+import session from "express-session";
 const app=express();
 handlebars.registerHelper("eq",function(a,b) {
     return a===b;
@@ -19,6 +20,13 @@ app.engine(
 );
 app.set("view engine",".hbs");
 app.use(morgan('dev'));
+app.use(
+    session({
+        secret: process.env.SESSION_SECRET || "mongotienda_secreto",
+        resave: false,
+        saveUninitialized: false
+    })
+);
 app.use(express.urlencoded({extended: false}));
 app.use(indexRoutes);
 app.use(express.static(path.join(__dirname,"frontend")));
