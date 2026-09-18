@@ -3,10 +3,16 @@ import Productos from '../models/Productos';
 import { createProductos, deleteProductos, renderEditProducto, renderProductos, statusProductos, updateProductos } from "../controllers/productoController";
 import Proveedores from '../models/Proveedores';
 import { createProveedor, deleteProveedor, renderEditProveedor, renderProveedores, statusProveedor, updateProveedor } from "../controllers/proveedoresController";
+import { renderRegistro, registrarUsuario } from "../controllers/authController";
 const router=Router();
 router.get("/", (req, res) => {
     res.render("index");
 });
+router.get("/", (req, res) => {
+    res.render("index");
+});
+router.get("/registro",renderRegistro);
+router.get("/registro",registrarUsuario);
 router.get("/productos",renderProductos);
 router.post("/productos/agregar",createProductos);
 router.get("/productos/:id/update",renderEditProducto);
