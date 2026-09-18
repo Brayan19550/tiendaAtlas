@@ -1,8 +1,20 @@
 import Proveedores from "../models/Proveedores";
 export const renderProveedores=async(req, res) => {
-    try {
-        const proveedores = await Proveedores.find().lean();
-        res.render("proveedores/index",{proveedores});
+   try {
+        const busqueda=req.query.busqueda || "";
+        const proveedores=await Proveedores.find({
+            $or: [
+                { nombreEmpresa: { $regex: busqueda,$options: "i"}},
+                { contactoNombre: { $regex: busqueda,$options: "i"}},
+                { correo: {$regex: busqueda,$options: "i"}},
+                { telefono: {$regex: busqueda,$options: "i"}},
+                { rfc: { $regex: busqueda,$options: "i"}}
+            ]
+        }).lean();
+        res.render("proveedores/index", {
+            proveedores,
+            busqueda
+        });
     } catch (error) {
         console.log(error);
     }

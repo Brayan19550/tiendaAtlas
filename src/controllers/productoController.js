@@ -1,8 +1,17 @@
 import Productos from "../models/Productos";
 export const renderProductos=async(req, res) => {
-    try {
-        const productos=await Productos.find().lean();
-        res.render("productos/index", { productos });
+   try {
+        const busqueda=req.query.busqueda || "";
+        const productos=await Productos.find({
+            $or: [
+                { nombre: {$regex: busqueda,$options: "i"}},
+                { descripcion: {$regex: busqueda,$options: "i"}}
+            ]
+        }).lean();
+        res.render("productos/index", {
+            productos,
+            busqueda
+        });
     } catch (error) {
         console.log(error);
     }

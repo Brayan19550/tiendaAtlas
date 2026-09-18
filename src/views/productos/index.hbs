@@ -7,6 +7,18 @@
             {{> productos/productoForm}}
         </div>
         <div class="col-md-7">
+            <form action="/productos" method="get" class="mb-3">
+                <div class="input-group">
+                    <input type="text" name="busqueda" class="form-control" placeholder="Buscar producto..." value="{{busqueda}}">
+                    <button class="btn btn-primary" type="submit">
+                    <img src="/icons/Buscar.jpg" style="width: 25px; height: 25px;">
+                         Buscar
+                    </button>       
+                    <a href="/productos" class="btn btn-secondary">
+                        Limpiar
+                    </a>
+                </div>
+            </form>
             {{> productos/productoTabla}}
         </div>
     </div>
