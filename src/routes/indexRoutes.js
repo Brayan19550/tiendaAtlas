@@ -1,22 +1,39 @@
 import { Router } from "express";
-import Productos from '../models/Productos';
-import { createProductos, deleteProductos, renderEditProducto, renderProductos, statusProductos, updateProductos } from "../controllers/productoController";
-import Proveedores from '../models/Proveedores';
-import { createProveedor, deleteProveedor, renderEditProveedor, renderProveedores, statusProveedor, updateProveedor } from "../controllers/proveedoresController";
-import { renderRegistro, registrarUsuario, renderLogin, loginUsuario, logoutUsuario} from "../controllers/authController";
+import {
+    createProductos,
+    deleteProductos,
+    renderEditProducto,
+    renderProductos,
+    statusProductos,
+    updateProductos
+} from "../controllers/productoController";
+
+import {
+    createProveedor,
+    deleteProveedor,
+    renderEditProveedor,
+    renderProveedores,
+    statusProveedor,
+    updateProveedor
+} from "../controllers/proveedoresController";
+
+import {
+    renderRegistro,
+    registrarUsuario,
+    renderLogin,
+    loginUsuario,
+    logoutUsuario
+} from "../controllers/authController";
 import { verificarSesion } from "../middlewares/authMiddleware";
 const router=Router();
 router.get("/", (req, res) => {
-    res.render("index");
-});
-router.get("/", (req, res) => {
-    res.render("/login");
+    res.redirect("/login");
 });
 router.get("/registro",renderRegistro);
 router.post("/registro",registrarUsuario);
-router.get("/login", renderLogin);
+router.get("/login",renderLogin);
 router.post("/login",loginUsuario);
-router.get("/",logoutUsuario);
+router.get("/logout",logoutUsuario);
 router.get("/productos",verificarSesion,renderProductos);
 router.post("/productos/agregar",verificarSesion,createProductos);
 router.get("/productos/:id/update",verificarSesion,renderEditProducto);
