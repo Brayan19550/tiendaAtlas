@@ -1,21 +1,22 @@
-<div class="container mt-4">
-    <div class="row mb-5">
-        <h2 class="text-white mb-3">Gestión de Productos</h2>
-        <div class="col-md-5">
-            {{> productos/productoForm}}
-        </div>
-        <div class="col-md-7">
-            {{> productos/productoTabla}}
-        </div>
-    </div>
-    <hr class="border-light my-5">
-    <div class="row">
-        <h2 class="text-white mb-3">Gestión de Proveedores</h2>
-        <div class="col-md-5">
-            {{> proveedores/proveedorForm}}
-        </div>
-        <div class="col-md-7">
-            {{> proveedores/proveedorTabla}}
+<div class="container mt-5">
+    <div class="text-center text-white">
+        <h1 class="mb-4">
+            MongoTienda
+        </h1>
+        <p class="mb-5">
+            Sistema de gestión de productos y proveedores
+        </p>
+        <div class="row justify-content-center">
+            <div class="col-md-4 mb-3">
+                <a href="/productos" class="btn btn-primary btn-lg w-100">
+                    📦 Productos
+                </a>
+            </div>
+            <div class="col-md-4 mb-3">
+                <a href="/proveedores" class="btn btn-success btn-lg w-100">
+                    🚚 Proveedores
+                </a>
+            </div>
         </div>
     </div>
 </div>

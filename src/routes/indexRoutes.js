@@ -5,6 +5,9 @@ import Proveedores from '../models/Proveedores';
 import { createProveedor, deleteProveedor, renderEditProveedor, renderProveedores, statusProveedor, updateProveedor } from "../controllers/proveedoresController";
 
 const router=Router();
+router.get("/", (req, res) => {
+    res.render("index");
+});
 router.get('/',renderProductos);
 router.post("/productos/agregar",createProductos);
 router.get('/productos/:id/update',renderEditProducto);

@@ -1,24 +1,22 @@
 import Proveedores from "../models/Proveedores";
-import Productos from "../models/Productos";
-export const renderProveedores=async (req, res) => {
+export const renderProveedores=async(req, res) => {
     try {
-        const proveedores=await Proveedores.find().lean();
-        const productos=await Productos.find().lean();
-        res.render("index",{ proveedores,productos }); 
+        const proveedores = await Proveedores.find().lean();
+        res.render("proveedores/index",{proveedores});
     } catch (error) {
         console.log(error);
     }
 };
-export const createProveedor=async (req, res) => {
+export const createProveedor=async(req, res) => {
     try {
-        const nuevoProveedor=new Proveedores(req.body); 
+        const nuevoProveedor=new Proveedores(req.body);
         await nuevoProveedor.save();
-        res.redirect("/");
+        res.redirect("/proveedores");
     } catch (error) {
         console.log(error);
     }
 };
-export const renderEditProveedor=async(req,res) => {
+export const renderEditProveedor=async(req, res) => {
     try {
         const proveedor=await Proveedores.findById(req.params.id).lean();
         res.render("editarpr",{proveedor});
@@ -26,31 +24,31 @@ export const renderEditProveedor=async(req,res) => {
         console.log(error.message);
     }
 };
-export const updateProveedor=async(req,res) => {
+export const updateProveedor=async(req, res) => {
     const {id}=req.params;
     try {
-        await Proveedores.findByIdAndUpdate(id,req.body);
-        res.redirect("/");
+        await Proveedores.findByIdAndUpdate(id, req.body);
+        res.redirect("/proveedores");
     } catch (error) {
         console.log(error);
     }
 };
-export const deleteProveedor=async(req,res) => {
-    const {id}=req.params;
+export const deleteProveedor=async(req, res) => {
+    const { id }=req.params;
     try {
         await Proveedores.findByIdAndDelete(id);
-        res.redirect("/");
+        res.redirect("/proveedores");
     } catch (error) {
         console.log(error);
     }
 };
-export const statusProveedor=async(req,res) => {
+export const statusProveedor=async(req, res) => {
     const {id}=req.params;
     try {
         const proveedor=await Proveedores.findById(id);
         proveedor.opcion=!proveedor.opcion;
         await proveedor.save();
-        res.redirect("/");
+        res.redirect("/proveedores");
     } catch (error) {
         console.log(error);
     }
