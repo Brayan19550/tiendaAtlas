@@ -88,3 +88,12 @@ export const loginUsuario = async (req, res) => {
         });
     }
 };
+export const logoutUsuario=(req, res) => {
+    req.session.destroy((error) => {
+        if (error) {
+            console.log(error);
+            return res.redirect("/");
+        }
+        res.redirect("/login");
+    });
+};
