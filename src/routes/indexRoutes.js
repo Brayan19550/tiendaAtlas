@@ -10,7 +10,7 @@ router.get("/", (req, res) => {
     res.render("index");
 });
 router.get("/", (req, res) => {
-    res.render("index");
+    res.render("/login");
 });
 router.get("/registro",renderRegistro);
 router.post("/registro",registrarUsuario);
