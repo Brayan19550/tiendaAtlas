@@ -4,10 +4,16 @@
         Mi app de MongoDB
     </a>
     <div class="d-flex gap-2">
+         {{#if usuarioSesion}}
+                <span class="text-white me-2">
+                    👤 {{usuarioSesion.nombre}}
+                </span>
+            {{/if}}
+
         <a href="/productos" class="btn btn-primary">
             Productos
         </a>
-        <a href="/proveedores" class="btn btn-success">
+        <a href="/proveedores" class="btn-purple">
             Proveedores
         </a>
         <a href="/logout" class="btn btn-danger">
