@@ -1,24 +1,28 @@
 <nav class="navbar navbar-dark bg-black mb-4">
-<div class="container">
-    <a href="/" class="navbar-brand">
-        Mi app de MongoDB
-    </a>
-    <div class="d-flex gap-2">
-         {{#if usuarioSesion}}
-                <span class="text-white me-2">
-                    👤 {{usuarioSesion.nombre}}
-                </span>
+    <div class="container">
+        <a href="/" class="navbar-brand">
+            Mi app de MongoDB
+        </a>
+        <div class="d-flex gap-2">
+            {{#if usuarioSesion}}
+            <!-- Todo esto solo se muestra si hay sesión iniciada -->
+            <span class="text-white me-2 d-flex align-items-center">
+                👤 {{usuarioSesion.nombre}}
+            </span>
+            <a href="/productos" class="btn btn-primary">
+                Productos
+            </a>
+            <a href="/proveedores" class="btn btn-primary">
+                Proveedores
+            </a>
+            <a href="/logout" class="btn btn-danger">
+                Cerrar sesión
+            </a>
+            {{else}}
+            <a href="/login" class="btn btn-outline-light">
+                Iniciar sesión
+            </a>
             {{/if}}
-
-        <a href="/productos" class="btn btn-primary">
-            Productos
-        </a>
-        <a href="/proveedores" class="btn btn-primary">
-            Proveedores
-        </a>
-        <a href="/logout" class="btn btn-danger">
-            Cerrar sesión
-        </a>
+        </div>
     </div>
-</div>
 </nav>
