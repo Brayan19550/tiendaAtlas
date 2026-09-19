@@ -6,17 +6,19 @@
         <p class="mb-5">
             Sistema de gestión de productos y proveedores
         </p>
-        <div class="row justify-content-center">
-            <div class="col-md-4 mb-3">
-                <a href="/productos" class="btn btn-primary btn-lg w-100">
-                    📦 Productos
-                </a>
+        {{#if usuarioSesion}}
+        <div class="alert bg-dark text-light border border-light p-4 shadow" role="alert">
+                <h4 class="alert-heading">¡Bienvenido, {{usuarioSesion.nombre}}!</h4>
+                <p class="mb-0">Tu sesión está activa.</p>
             </div>
-            <div class="col-md-4 mb-3">
-                <a href="/proveedores" class="btn btn-success btn-lg w-100">
-                    🚚 Proveedores
-                </a>
+        {{else}}
+            <div class="row justify-content-center">
+                <div class="col-md-4 mb-3">
+                    <a href="/login" class="btn btn-primary btn-lg w-100">
+                        🔑 Iniciar Sesión
+                    </a>
+                </div>
             </div>
-        </div>
+        {{/if}}
     </div>
 </div>

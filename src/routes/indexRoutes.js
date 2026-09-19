@@ -27,7 +27,7 @@ import {
 import { verificarSesion } from "../middlewares/authMiddleware";
 const router=Router();
 router.get("/", (req, res) => {
-    res.redirect("/login");
+    res.render("index");
 });
 router.get("/registro",renderRegistro);
 router.post("/registro",registrarUsuario);
