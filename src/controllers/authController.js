@@ -92,8 +92,14 @@ export const logoutUsuario=(req, res) => {
     req.session.destroy((error) => {
         if (error) {
             console.log(error);
-            return res.redirect("/");
+            return res.redirect("/login");
         }
+        res.setHeader(
+            "Cache-Control",
+            "no-store, no-cache,must-revalidate,proxy-revalidate"
+        );
+        res.setHeader("Pragma","no-cache");
+        res.setHeader("Expires","0");
         res.redirect("/login");
     });
 };
