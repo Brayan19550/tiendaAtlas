@@ -5,19 +5,23 @@
         </a>
         <div class="d-flex gap-2">
             {{#if usuarioSesion}}
-            <span class="text-white me-2 d-flex align-items-center">
-                👤 {{usuarioSesion.nombre}}
-            </span>
-            <a href="/productos" class="btn btn-primary">
-                Productos
-            </a>
-            <a href="/proveedores" class="btn btn-primary">
-                Proveedores
-            </a>
-            <a href="/logout" class="btn btn-danger">
-                Cerrar sesión
-            </a>
-            {{else}}
+                <span class="text-white me-2 d-flex align-items-center">
+                    👤 {{usuarioSesion.nombre}}
+                </span>
+                <a href="/productos" class="btn btn-primary">
+                    Productos
+                </a>
+                <a href="/proveedores" class="btn btn-primary">
+                    Proveedores
+                </a>
+                {{#if (eq usuarioSesion.rol "administrador")}}
+                    <a href="/usuarios" class="btn btn-warning">
+                        👥 Usuarios
+                    </a>
+                {{/if}}
+                <a href="/logout" class="btn btn-danger">
+                    Cerrar sesión
+                </a>
             {{/if}}
         </div>
     </div>

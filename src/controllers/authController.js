@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 export const renderRegistro=(req, res) => {
     res.render("registro");
 };
-export const registrarUsuario=async(req, res) => {
+export const registrarUsuario=async (req, res) => {
     try {
         const {
             nombre,
@@ -11,7 +11,7 @@ export const registrarUsuario=async(req, res) => {
             correo,
             password,
             confirmarPassword
-        }=req.body;
+        } = req.body;
         if (password !== confirmarPassword) {
             return res.render("registro", {
                 error: "Las contraseñas no coinciden"
@@ -33,12 +33,36 @@ export const registrarUsuario=async(req, res) => {
                 error: "El correo ya está registrado"
             });
         }
-        const passwordEncriptada=await bcrypt.hash(password, 10);
+        const passwordEncriptada = await bcrypt.hash(
+            password,
+            10
+        );
+        const cantidadUsuarios=await Usuario.countDocuments();
+        const rolInicial =
+            cantidadUsuarios === 0
+                ? "administrador"
+                : "usuario";
+        const permisosIniciales={
+            productos: {
+                ver: true,
+                agregar: false,
+                actualizar: false,
+                eliminar: false
+            },
+            proveedores: {
+                ver: true,
+                agregar: false,
+                actualizar: false,
+                eliminar: false
+            }
+        };
         const nuevoUsuario=new Usuario({
             nombre,
             usuario,
             correo,
-            password: passwordEncriptada
+            password: passwordEncriptada,
+            rol: rolInicial,
+            permisos: permisosIniciales
         });
         await nuevoUsuario.save();
         res.redirect("/login");
@@ -49,10 +73,10 @@ export const registrarUsuario=async(req, res) => {
         });
     }
 };
-export const renderLogin=(req, res) => {
+export const renderLogin = (req, res) => {
     res.render("login");
 };
-export const loginUsuario = async (req, res) => {
+export const loginUsuario=async (req, res) => {
     try {
         const {
             usuario,
@@ -66,7 +90,7 @@ export const loginUsuario = async (req, res) => {
                 error: "Usuario o contraseña incorrectos"
             });
         }
-        const passwordCorrecta = await bcrypt.compare(
+        const passwordCorrecta=await bcrypt.compare(
             password,
             usuarioEncontrado.password
         );
@@ -75,10 +99,12 @@ export const loginUsuario = async (req, res) => {
                 error: "Usuario o contraseña incorrectos"
             });
         }
-        req.session.usuario= {
+        req.session.usuario={
             id: usuarioEncontrado._id,
             nombre: usuarioEncontrado.nombre,
-            usuario: usuarioEncontrado.usuario
+            usuario: usuarioEncontrado.usuario,
+            rol: usuarioEncontrado.rol,
+            permisos: usuarioEncontrado.permisos
         };
         res.redirect("/");
     } catch (error) {
@@ -96,10 +122,10 @@ export const logoutUsuario=(req, res) => {
         }
         res.setHeader(
             "Cache-Control",
-            "no-store, no-cache,must-revalidate,proxy-revalidate"
+            "no-store, no-cache, must-revalidate, proxy-revalidate"
         );
-        res.setHeader("Pragma","no-cache");
-        res.setHeader("Expires","0");
+        res.setHeader("Pragma", "no-cache");
+        res.setHeader("Expires", "0");
         res.redirect("/login");
     });
 };

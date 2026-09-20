@@ -18,12 +18,39 @@
             <td>{{precio}}</td>
             <td>
                 {{#if opcion}}
-                <a href="/productos/{{_id}}/status" class="btn btn-no-disponible"><img src="/icons/No disponible.png" style="width: 30px; height: 30px;">No disponible</a>
+                <a href="/productos/{{_id}}/status" class="btn btn-no-disponible">
+                    <img src="/icons/No disponible.png" style="width: 30px; height: 30px;">
+                    No disponible
+                </a>
                 {{else}}
-                <a href="/productos/{{_id}}/status" class="btn btn-disponible"><img src="/icons/Disponible.jpg" style="width: 30px; height: 30px;">Disponible</a>
+                <a href="/productos/{{_id}}/status" class="btn btn-disponible">
+                    <img src="/icons/Disponible.jpg" style="width: 30px; height: 30px;">
+                    Disponible
+                </a>
                 {{/if}}
-                <a href="/productos/{{_id}}/update" class="btn btn-actualizar"><img src="/icons/Actualizar.png" style="width: 30px; height: 30px;">Actualizar</a>
-                <a href="/productos/{{_id}}/delete" class="btn btn-eliminar"><img src="/icons/Eliminar.png" style="width: 30px; height: 30px;">Eliminar</a>
+                {{#if (eq ../usuarioSesion.rol "administrador")}}
+                <a href="/productos/{{_id}}/update" class="btn btn-actualizar">
+                    <img src="/icons/Actualizar.png" style="width: 30px; height: 30px;">
+                    Actualizar
+                </a>
+                <a href="/productos/{{_id}}/delete" class="btn btn-eliminar">
+                    <img src="/icons/Eliminar.png" style="width: 30px; height: 30px;">
+                    Eliminar
+                </a>
+                {{else}}
+                {{#if ../usuarioSesion.permisos.productos.actualizar}}
+                <a href="/productos/{{_id}}/update" class="btn btn-actualizar">
+                    <img src="/icons/Actualizar.png" style="width: 30px; height: 30px;">
+                    Actualizar
+                </a>
+                {{/if}}
+                {{#if ../usuarioSesion.permisos.productos.eliminar}}
+                <a href="/productos/{{_id}}/delete" class="btn btn-eliminar">
+                    <img src="/icons/Eliminar.png" style="width: 30px; height: 30px;">
+                    Eliminar
+                </a>
+                {{/if}}
+                {{/if}}
             </td>
         </tr>
         {{/each}}

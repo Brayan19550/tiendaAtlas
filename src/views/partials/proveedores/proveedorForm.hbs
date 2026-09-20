@@ -1,3 +1,4 @@
+{{#if (eq usuarioSesion.rol "administrador")}}
 <div class="card card-body p-4 rounded-0 formulario-verde">
     <h4>Agregar proveedor</h4>
     <form action="/proveedores/agregar" method="post">
@@ -32,24 +33,127 @@
         <div>
             <label for="condicionesPago">Condiciones de pago:</label>
             <select name="condicionesPago" id="condicionesPago" class="form-control campo-verde">
-                <option value="" disabled selected>Selecciona una opción</option>
-                <option value="Contado">Contado</option>
-                <option value="Crédito 30 días">Crédito 30 días</option>
-                <option value="Crédito 60 días">Crédito 60 días</option>
+                <option value="" disabled selected>
+                    Selecciona una opción
+                </option>
+                <option value="Contado">
+                    Contado
+                </option>
+                <option value="Crédito 30 días">
+                    Crédito 30 días
+                </option>
+                <option value="Crédito 60 días">
+                    Crédito 60 días
+                </option>
             </select>
         </div>
         <div>
             <label for="calificacion">Calificación:</label>
             <select name="calificacion" id="calificacion" class="form-control campo-verde">
-                <option value="" disabled selected>Selecciona una calificación</option>
-                <option value="5">⭐⭐⭐⭐⭐ (5 - Excelente)</option>
-                <option value="4">⭐⭐⭐⭐ (4 - Muy bueno)</option>
-                <option value="3">⭐⭐⭐ (3 - Bueno)</option>
-                <option value="2">⭐⭐ (2 - Regular)</option>
-                <option value="1">⭐ (1 - Malo)</option>
+                <option value="" disabled selected>
+                    Selecciona una calificación
+                </option>
+                <option value="5">
+                    ⭐⭐⭐⭐⭐ (5 - Excelente)
+                </option>
+                <option value="4">
+                    ⭐⭐⭐⭐ (4 - Muy bueno)
+                </option>
+                <option value="3">
+                    ⭐⭐⭐ (3 - Bueno)
+                </option>
+                <option value="2">
+                    ⭐⭐ (2 - Regular)
+                </option>
+                <option value="1">
+                    ⭐ (1 - Malo)
+                </option>
             </select>
         </div>
-        <button class="btn btn-success btn-sm mt-2"><img src="/icons/Agregar.png"
-                style="width: 30px; height: 30px;">Agregar Proveedor</button>
+        <button class="btn btn-success btn-sm mt-2">
+            <img src="/icons/Agregar.png" style="width: 30px; height: 30px;">
+            Agregar Proveedor
+        </button>
     </form>
 </div>
+{{else}}
+{{#if usuarioSesion.permisos.proveedores.agregar}}
+<div class="card card-body p-4 rounded-0 formulario-verde">
+    <h4>Agregar proveedor</h4>
+    <form action="/proveedores/agregar" method="post">
+        <div>
+            <label for="nombreEmpresa">Nombre de la empresa:</label>
+            <input type="text" name="nombreEmpresa" placeholder="Empresa" id="nombreEmpresa"
+                class="form-control campo-verde">
+        </div>
+        <div>
+            <label for="contactoNombre">Nombre del contacto:</label>
+            <input type="text" name="contactoNombre" placeholder="Contacto" id="contactoNombre"
+                class="form-control campo-verde">
+        </div>
+        <div>
+            <label for="telefono">Teléfono:</label>
+            <input type="text" name="telefono" placeholder="Teléfono" id="telefono" class="form-control campo-verde">
+        </div>
+        <div>
+            <label for="correo">Correo electrónico:</label>
+            <input type="email" name="correo" placeholder="Correo" id="correo" class="form-control campo-verde">
+        </div>
+        <div>
+            <label for="direccion">Dirección:</label>
+            <textarea name="direccion" cols="25" rows="3" placeholder="Dirección"
+                class="form-control campo-verde"></textarea>
+        </div>
+        <div>
+            <label for="rfc">RFC:</label>
+            <input type="text" name="rfc" placeholder="Ej. XAXX010101000" id="rfc" class="form-control campo-verde"
+                maxlength="13" style="text-transform: uppercase;">
+        </div>
+        <div>
+            <label for="condicionesPago">Condiciones de pago:</label>
+            <select name="condicionesPago" id="condicionesPago" class="form-control campo-verde">
+                <option value="" disabled selected>
+                    Selecciona una opción
+                </option>
+                <option value="Contado">
+                    Contado
+                </option>
+                <option value="Crédito 30 días">
+                    Crédito 30 días
+                </option>
+                <option value="Crédito 60 días">
+                    Crédito 60 días
+                </option>
+            </select>
+        </div>
+        <div>
+            <label for="calificacion">Calificación:</label>
+            <select name="calificacion" id="calificacion" class="form-control campo-verde">
+                <option value="" disabled selected>
+                    Selecciona una calificación
+                </option>
+                <option value="5">
+                    ⭐⭐⭐⭐⭐ (5 - Excelente)
+                </option>
+                <option value="4">
+                    ⭐⭐⭐⭐ (4 - Muy bueno)
+                </option>
+                <option value="3">
+                    ⭐⭐⭐ (3 - Bueno)
+                </option>
+                <option value="2">
+                    ⭐⭐ (2 - Regular)
+                </option>
+                <option value="1">
+                    ⭐ (1 - Malo)
+                </option>
+            </select>
+        </div>
+        <button class="btn btn-success btn-sm mt-2">
+            <img src="/icons/Agregar.png" style="width: 30px; height: 30px;">
+            Agregar Proveedor
+        </button>
+    </form>
+</div>
+{{/if}}
+{{/if}}

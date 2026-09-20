@@ -1,0 +1,116 @@
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Administración de usuarios</h2>
+        <div>
+            <a href="/productos" class="btn btn-secondary me-2">
+                📦 Productos
+            </a>
+            <a href="/proveedores" class="btn btn-secondary">
+                🚚 Proveedores
+            </a>
+        </div>
+    </div>
+    {{#each usuarios}}
+    <div class="card shadow mb-4">
+        <div class="card-header">
+            <h5 class="mb-0">
+                {{nombre}} ({{usuario}})
+            </h5>
+        </div>
+        <div class="card-body">
+            <p>
+                <strong>Correo:</strong> {{correo}}
+            </p>
+            <form action="/usuarios/{{_id}}/permisos" method="POST">
+                <div class="mb-4">
+                    <label class="form-label">
+                        <strong>Rol</strong>
+                    </label>
+                    <select name="rol" class="form-select">
+                        <option value="usuario" {{#if (eq rol "usuario" )}}selected{{/if}}>
+                            Usuario
+                        </option>
+                        <option value="administrador" {{#if (eq rol "administrador" )}}selected{{/if}}>
+                            Administrador
+                        </option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <h5>📦 Permisos de Productos</h5>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="productos_agregar" value="true"
+                                    {{#if permisos.productos.agregar}} checked {{/if}}>
+                                <label class="form-check-label">
+                                    <img src="/icons/Agregar.png" alt="width: 30px; height: 30px;">
+                                    Agregar productos
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="productos_actualizar" value="true"
+                                    {{#if permisos.productos.actualizar}} checked {{/if}}>
+                                <label class="form-check-label">
+                                    <img src="/icons/Actualizar.png" alt="width: 30px; height: 30px;">
+                                    Actualizar productos
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="productos_eliminar" value="true"
+                                    {{#if permisos.productos.eliminar}} checked {{/if}}>
+                                <label class="form-check-label">
+                                    <img src="/icons/Eliminar.png" alt="width: 30px; height: 30px;">
+                                    Eliminar productos
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <h5>🚚 Permisos de Proveedores</h5>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="proveedores_agregar" value="true"
+                                    {{#if permisos.proveedores.agregar}} checked {{/if}}>
+                                <label class="form-check-label">
+                                    <img src="/icons/Agregar.png" alt="width: 30px; height: 30px;">
+                                    Agregar proveedores
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="proveedores_actualizar"
+                                    value="true" {{#if permisos.proveedores.actualizar}} checked {{/if}}>
+                                <label class="form-check-label">
+                                    <img src="/icons/Actualizar.png" alt="width: 30px; height: 30px;">
+                                    Actualizar proveedores
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="proveedores_eliminar" value="true"
+                                    {{#if permisos.proveedores.eliminar}} checked {{/if}}>
+                                <label class="form-check-label">
+                                    <img src="/icons/Eliminar.png" alt="width: 30px; height: 30px;">
+                                    Eliminar proveedores
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <img src="/icons/Guardar.jpg" alt="width: 30px; height: 30px;">
+                    Guardar permisos
+                </button>
+            </form>
+        </div>
+    </div>
+    {{/each}}
+</div>
