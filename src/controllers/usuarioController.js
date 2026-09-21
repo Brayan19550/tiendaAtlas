@@ -1,5 +1,5 @@
 import Usuario from "../models/Usuario.js";
-export const mostrarUsuarios=async (req, res) => {
+export const mostrarUsuarios = async (req, res) => {
     try {
         const usuarios=await Usuario.find().lean();
         res.render("usuarios", {
@@ -24,6 +24,20 @@ export const actualizarPermisos=async (req, res) => {
             proveedores_actualizar,
             proveedores_eliminar
         }=req.body;
+        const usuarioModificar=await Usuario.findById(id);
+        if (!usuarioModificar) {
+            return res.status(404).render("error", {
+                mensaje: "El usuario no existe."
+            });
+        }
+        if (
+            req.session.usuario.id.toString() === id &&
+            rol !== "administrador"
+        ) {
+            return res.status(403).render("error", {
+                mensaje: "No puedes quitarte a ti mismo el rol de administrador."
+            });
+        }
         const permisos={
             productos: {
                 ver: true,
