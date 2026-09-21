@@ -1,5 +1,5 @@
 import Usuario from "../models/Usuario.js";
-export const mostrarUsuarios = async (req, res) => {
+export const mostrarUsuarios=async (req, res) => {
     try {
         const usuarios=await Usuario.find().lean();
         res.render("usuarios", {
@@ -23,7 +23,7 @@ export const actualizarPermisos=async (req, res) => {
             proveedores_agregar,
             proveedores_actualizar,
             proveedores_eliminar
-        }=req.body;
+        } = req.body;
         const usuarioModificar=await Usuario.findById(id);
         if (!usuarioModificar) {
             return res.status(404).render("error", {
@@ -61,6 +61,29 @@ export const actualizarPermisos=async (req, res) => {
         console.error(error);
         res.status(500).render("error", {
             mensaje: "Error al actualizar los permisos del usuario."
+        });
+    }
+};
+export const eliminarUsuario=async (req, res) => {
+    try {
+        const {id}=req.params;
+        if (req.session.usuario.id.toString() === id) {
+            return res.status(403).render("error", {
+                mensaje: "No puedes eliminar tu propia cuenta de administrador."
+            });
+        }
+        const usuario=await Usuario.findById(id);
+        if (!usuario) {
+            return res.status(404).render("error", {
+                mensaje: "El usuario no existe."
+            });
+        }
+        await Usuario.findByIdAndDelete(id);
+        res.redirect("/usuarios");
+    } catch (error) {
+        console.error(error);
+        res.status(500).render("error", {
+            mensaje: "Error al eliminar el usuario."
         });
     }
 };
